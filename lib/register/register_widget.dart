@@ -38,6 +38,15 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          backgroundColor: FlutterFlowTheme.primaryBlack,
+          automaticallyImplyLeading: true,
+          actions: [],
+          elevation: 4,
+        ),
+      ),
       backgroundColor: FlutterFlowTheme.primaryBlack,
       body: Align(
         alignment: AlignmentDirectional(-0.14, -0.08),

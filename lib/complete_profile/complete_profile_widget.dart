@@ -37,21 +37,27 @@ class _CompleteProfileWidgetState extends State<CompleteProfileWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryBlack,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Complete Profile',
-          style: FlutterFlowTheme.title2.override(
-            fontFamily: 'Lexend Deca',
-            color: FlutterFlowTheme.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          backgroundColor: FlutterFlowTheme.primaryBlack,
+          automaticallyImplyLeading: true,
+          flexibleSpace: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+            child: Text(
+              'Complete Profile',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.title2.override(
+                fontFamily: 'Lexend Deca',
+                color: FlutterFlowTheme.white,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
+          actions: [],
+          elevation: 0,
         ),
-        actions: [],
-        centerTitle: false,
-        elevation: 0,
       ),
       backgroundColor: FlutterFlowTheme.primaryBlack,
       body: Container(

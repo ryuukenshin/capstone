@@ -447,11 +447,9 @@ class _ToUpdateWidgetState extends State<ToUpdateWidget> {
                                             Navigator.pop(context);
                                             final schedulesUpdateData =
                                                 createSchedulesRecordData(
-                                              barangay: columnSchedulesRecord
-                                                  .barangay,
+                                              barangay: textController1.text,
                                               schedule: datePicked,
-                                              details:
-                                                  columnSchedulesRecord.details,
+                                              details: textController2.text,
                                             );
                                             await widget.toUpdate
                                                 .update(schedulesUpdateData);

@@ -27,19 +27,25 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.primaryBlack,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Dashboard',
-          style: FlutterFlowTheme.title1.override(
-            fontFamily: 'Lexend Deca',
-            color: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(100),
+        child: AppBar(
+          backgroundColor: FlutterFlowTheme.primaryBlack,
+          automaticallyImplyLeading: false,
+          flexibleSpace: Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+            child: Text(
+              'Dashboard',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.title1.override(
+                fontFamily: 'Lexend Deca',
+                color: Colors.white,
+              ),
+            ),
           ),
+          actions: [],
+          elevation: 4,
         ),
-        actions: [],
-        centerTitle: false,
-        elevation: 4,
       ),
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton.extended(
@@ -78,9 +84,11 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                     child: Text(
                       'Schedule of collections',
-                      style: FlutterFlowTheme.title2.override(
+                      style: FlutterFlowTheme.title1.override(
                         fontFamily: 'Lexend Deca',
                         color: FlutterFlowTheme.primaryBlack,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                   )

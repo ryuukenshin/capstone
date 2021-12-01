@@ -61,7 +61,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
             shape: BoxShape.rectangle,
             border: Border.all(
-              color: Colors.white,
+              color: FlutterFlowTheme.primaryColor,
             ),
           ),
           child: Padding(
