@@ -70,7 +70,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 160, 0, 0),
+                                          0, 100, 0, 0),
                                       child: InkWell(
                                         onTap: () async {
                                           final selectedMedia =
@@ -165,6 +165,26 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                           child: Text(
                             myProfileUsersRecord.email,
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Lexend Deca',
+                              color: FlutterFlowTheme.primaryBlack,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                          child: Text(
+                            myProfileUsersRecord.phoneNumber,
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Lexend Deca',
+                              color: FlutterFlowTheme.primaryBlack,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                          child: Text(
+                            myProfileUsersRecord.barangay,
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: FlutterFlowTheme.primaryBlack,

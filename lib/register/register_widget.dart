@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../complete_profile/complete_profile_widget.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -15,11 +16,14 @@ class RegisterWidget extends StatefulWidget {
 }
 
 class _RegisterWidgetState extends State<RegisterWidget> {
-  TextEditingController confirmPasswordController;
-  bool confirmPasswordVisibility;
+  String barangayValue;
   TextEditingController emailAddressController;
+  TextEditingController fullNameController;
+  TextEditingController phoneNumberController;
   TextEditingController passwordController;
   bool passwordVisibility;
+  TextEditingController confirmPasswordController;
+  bool confirmPasswordVisibility;
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -30,6 +34,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     confirmPasswordController = TextEditingController();
     confirmPasswordVisibility = false;
     emailAddressController = TextEditingController();
+    fullNameController = TextEditingController();
+    phoneNumberController = TextEditingController();
     passwordController = TextEditingController();
     passwordVisibility = false;
   }
@@ -63,6 +69,57 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.secondaryColor,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 5, 20, 0),
+                      child: TextFormField(
+                        controller: fullNameController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Full Name',
+                          labelStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Lexend Deca',
+                            color: FlutterFlowTheme.primaryBlack,
+                          ),
+                          hintText: 'Full name',
+                          hintStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Lexend Deca',
+                            color: FlutterFlowTheme.white,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          filled: true,
+                          fillColor: FlutterFlowTheme.primaryColor,
+                        ),
+                        style: FlutterFlowTheme.subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.white,
+                        ),
+                        keyboardType: TextInputType.name,
+                      ),
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
                   child: Container(
@@ -110,6 +167,94 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           color: FlutterFlowTheme.white,
                         ),
                         keyboardType: TextInputType.emailAddress,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.secondaryColor,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(12, 5, 20, 0),
+                      child: TextFormField(
+                        controller: phoneNumberController,
+                        obscureText: false,
+                        decoration: InputDecoration(
+                          labelText: 'Phone number',
+                          labelStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Lexend Deca',
+                            color: FlutterFlowTheme.primaryBlack,
+                          ),
+                          hintText: 'Phone number',
+                          hintStyle: FlutterFlowTheme.subtitle2.override(
+                            fontFamily: 'Lexend Deca',
+                            color: FlutterFlowTheme.white,
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color(0x00000000),
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          filled: true,
+                          fillColor: FlutterFlowTheme.primaryColor,
+                        ),
+                        style: FlutterFlowTheme.subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.white,
+                        ),
+                        keyboardType: TextInputType.phone,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(40, 0, 40, 12),
+                  child: Container(
+                    width: double.infinity,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      color: FlutterFlowTheme.secondaryColor,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(16),
+                        topRight: Radius.circular(16),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(10, 0, 20, 0),
+                      child: FlutterFlowDropDown(
+                        initialOption: barangayValue ??= 'Barangay',
+                        options: ['Lamot 2', 'Lamot 1', 'Curva', 'Kanluran']
+                            .toList(),
+                        onChanged: (val) => setState(() => barangayValue = val),
+                        width: 10,
+                        height: 50,
+                        textStyle: FlutterFlowTheme.subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.white,
+                        ),
+                        fillColor: FlutterFlowTheme.primaryColor,
+                        elevation: 0,
+                        borderColor: Colors.transparent,
+                        borderRadius: 16,
+                        margin: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                        hidesUnderline: true,
                       ),
                     ),
                   ),

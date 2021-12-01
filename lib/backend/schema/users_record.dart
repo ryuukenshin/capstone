@@ -38,6 +38,13 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get password;
 
   @nullable
+  @BuiltValueField(wireName: 'full_name')
+  String get fullName;
+
+  @nullable
+  String get barangay;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -48,7 +55,9 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
     ..uid = ''
     ..phoneNumber = ''
     ..userRole = ''
-    ..password = '';
+    ..password = ''
+    ..fullName = ''
+    ..barangay = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('users');
@@ -76,6 +85,8 @@ Map<String, dynamic> createUsersRecordData({
   String phoneNumber,
   String userRole,
   String password,
+  String fullName,
+  String barangay,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
@@ -87,4 +98,6 @@ Map<String, dynamic> createUsersRecordData({
           ..createdTime = createdTime
           ..phoneNumber = phoneNumber
           ..userRole = userRole
-          ..password = password));
+          ..password = password
+          ..fullName = fullName
+          ..barangay = barangay));

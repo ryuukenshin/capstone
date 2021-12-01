@@ -210,7 +210,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                                         dateTimeFormat(
                                                             'jms',
                                                             columnSchedulesRecord
-                                                                .time),
+                                                                .schedule),
                                                         style: FlutterFlowTheme
                                                             .bodyText2
                                                             .override(
