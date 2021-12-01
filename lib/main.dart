@@ -6,10 +6,9 @@ import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 
 import '../flutter_flow/flutter_flow_theme.dart';
-import 'package:trys/splash_screen/splash_screen_widget.dart';
+import 'package:capstone/login/login_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
-import 'my_tasks/my_tasks_widget.dart';
-import 'completed_tasks/completed_tasks_widget.dart';
+import 'dash_board/dash_board_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 
 void main() async {
@@ -25,14 +24,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Stream<TrysFirebaseUser> userStream;
-  TrysFirebaseUser initialUser;
+  Stream<CapstoneFirebaseUser> userStream;
+  CapstoneFirebaseUser initialUser;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
     super.initState();
-    userStream = trysFirebaseUserStream()
+    userStream = capstoneFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
   }
 
@@ -46,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'trys',
+      title: 'capstone',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -55,21 +54,18 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
       home: initialUser == null
-          ? Container(
-              color: Colors.transparent,
-              child: Center(
-                child: Builder(
-                  builder: (context) => Image.asset(
-                    'assets/images/todo_0.0_Splash@3x.png',
-                    width: MediaQuery.of(context).size.width * 0.5,
-                    fit: BoxFit.fitWidth,
-                  ),
+          ? const Center(
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: CircularProgressIndicator(
+                  color: FlutterFlowTheme.primaryColor,
                 ),
               ),
             )
           : currentUser.loggedIn
               ? NavBarPage()
-              : SplashScreenWidget(),
+              : LoginWidget(),
     );
   }
 }
@@ -85,7 +81,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'myTasks';
+  String _currentPage = 'dashBoard';
 
   @override
   void initState() {
@@ -96,9 +92,8 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'myTasks': MyTasksWidget(),
-      'CompletedTasks': CompletedTasksWidget(),
-      'MyProfile': MyProfileWidget(),
+      'dashBoard': DashBoardWidget(),
+      'myProfile': MyProfileWidget(),
     };
     return Scaffold(
       body: tabs[_currentPage],
@@ -106,45 +101,33 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.playlist_add,
-              size: 32,
+              Icons.home,
+              size: 24,
             ),
             activeIcon: Icon(
-              Icons.playlist_add,
-              size: 32,
+              Icons.home,
+              size: 24,
             ),
-            label: 'My Tasks',
+            label: '',
             tooltip: '',
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.alarm_on,
-              size: 32,
+              Icons.account_circle_outlined,
+              size: 24,
             ),
             activeIcon: Icon(
-              Icons.alarm_on,
-              size: 32,
+              Icons.account_circle_rounded,
+              size: 24,
             ),
-            label: 'Completed',
-            tooltip: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-              size: 32,
-            ),
-            activeIcon: Icon(
-              Icons.person_sharp,
-              size: 32,
-            ),
-            label: 'Home',
+            label: '',
             tooltip: '',
           )
         ],
-        backgroundColor: FlutterFlowTheme.primaryBlack,
+        backgroundColor: Colors.white,
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
         selectedItemColor: FlutterFlowTheme.primaryColor,
-        unselectedItemColor: FlutterFlowTheme.tertiaryColor,
+        unselectedItemColor: FlutterFlowTheme.secondaryColor,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: false,
         showUnselectedLabels: false,

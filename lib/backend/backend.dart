@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 
 import 'schema/users_record.dart';
-import 'schema/to_do_list_record.dart';
+import 'schema/schedules_record.dart';
 import 'schema/serializers.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
@@ -13,7 +13,7 @@ export 'schema/index.dart';
 export 'schema/serializers.dart';
 
 export 'schema/users_record.dart';
-export 'schema/to_do_list_record.dart';
+export 'schema/schedules_record.dart';
 
 Stream<List<UsersRecord>> queryUsersRecord(
         {Query Function(Query) queryBuilder,
@@ -22,11 +22,11 @@ Stream<List<UsersRecord>> queryUsersRecord(
     queryCollection(UsersRecord.collection, UsersRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
-Stream<List<ToDoListRecord>> queryToDoListRecord(
+Stream<List<SchedulesRecord>> querySchedulesRecord(
         {Query Function(Query) queryBuilder,
         int limit = -1,
         bool singleRecord = false}) =>
-    queryCollection(ToDoListRecord.collection, ToDoListRecord.serializer,
+    queryCollection(SchedulesRecord.collection, SchedulesRecord.serializer,
         queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
 
 Stream<List<T>> queryCollection<T>(

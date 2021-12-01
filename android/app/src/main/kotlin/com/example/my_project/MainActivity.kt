@@ -1,4 +1,4 @@
-package com.flutterflow.trys
+package capstone.two.app
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterFragmentActivity

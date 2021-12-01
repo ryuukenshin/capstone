@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>813304507862-1qq0lnn5r73c76o4sn3qrc8b4j0ph568.apps.googleusercontent.com</string>
+	<string>820077293141-nr5hhb5ao3gpneeervm39mfkasa119tv.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.813304507862-1qq0lnn5r73c76o4sn3qrc8b4j0ph568</string>
+	<string>com.googleusercontent.apps.820077293141-nr5hhb5ao3gpneeervm39mfkasa119tv</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>820077293141-9nndpvlpr5crfqefj0nqdois6lfdb7t4.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDL1J2SqrC6cY2a_GrCkfxCJKknHpjmujc</string>
+	<string>AIzaSyC2EaLd90ZXm1CTn4aYsX-gxY5cLNYqF08</string>
 	<key>GCM_SENDER_ID</key>
-	<string>813304507862</string>
+	<string>820077293141</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>RobinDo</string>
+	<string>capstone.two.app</string>
 	<key>PROJECT_ID</key>
-	<string>robindo-2eac4</string>
+	<string>capstone-ae2d6</string>
 	<key>STORAGE_BUCKET</key>
-	<string>robindo-2eac4.appspot.com</string>
+	<string>capstone-ae2d6.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:813304507862:ios:204e171a8cadd93cce0877</string>
+	<string>1:820077293141:ios:b0891fe045f13620626edc</string>
 </dict>
 </plist>

@@ -10,22 +10,18 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   static Serializer<UsersRecord> get serializer => _$usersRecordSerializer;
 
   @nullable
-  @BuiltValueField(wireName: 'Password')
-  String get password;
-
-  @nullable
-  @BuiltValueField(wireName: 'FullName')
-  String get fullName;
-
-  @nullable
-  String get uid;
-
-  @nullable
   String get email;
 
   @nullable
   @BuiltValueField(wireName: 'display_name')
   String get displayName;
+
+  @nullable
+  @BuiltValueField(wireName: 'photo_url')
+  String get photoUrl;
+
+  @nullable
+  String get uid;
 
   @nullable
   @BuiltValueField(wireName: 'created_time')
@@ -36,24 +32,26 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
   String get phoneNumber;
 
   @nullable
-  @BuiltValueField(wireName: 'photo_url')
-  String get photoUrl;
+  String get userRole;
+
+  @nullable
+  String get password;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(UsersRecordBuilder builder) => builder
-    ..password = ''
-    ..fullName = ''
-    ..uid = ''
     ..email = ''
     ..displayName = ''
+    ..photoUrl = ''
+    ..uid = ''
     ..phoneNumber = ''
-    ..photoUrl = '';
+    ..userRole = ''
+    ..password = '';
 
   static CollectionReference get collection =>
-      FirebaseFirestore.instance.collection('Users');
+      FirebaseFirestore.instance.collection('users');
 
   static Stream<UsersRecord> getDocument(DocumentReference ref) => ref
       .snapshots()
@@ -70,23 +68,23 @@ abstract class UsersRecord implements Built<UsersRecord, UsersRecordBuilder> {
 }
 
 Map<String, dynamic> createUsersRecordData({
-  String password,
-  String fullName,
-  String uid,
   String email,
   String displayName,
+  String photoUrl,
+  String uid,
   DateTime createdTime,
   String phoneNumber,
-  String photoUrl,
+  String userRole,
+  String password,
 }) =>
     serializers.toFirestore(
         UsersRecord.serializer,
         UsersRecord((u) => u
-          ..password = password
-          ..fullName = fullName
-          ..uid = uid
           ..email = email
           ..displayName = displayName
+          ..photoUrl = photoUrl
+          ..uid = uid
           ..createdTime = createdTime
           ..phoneNumber = phoneNumber
-          ..photoUrl = photoUrl));
+          ..userRole = userRole
+          ..password = password));

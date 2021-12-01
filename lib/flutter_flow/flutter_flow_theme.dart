@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 // ignore: avoid_classes_with_only_static_members
 class FlutterFlowTheme {
-  static const Color primaryColor = Color(0xFF42BEA5);
-  static const Color secondaryColor = Color(0xFF359F8A);
+  static const Color primaryColor = Color(0xFF359F8A);
+  static const Color secondaryColor = Color(0xFF42BEA5);
   static const Color tertiaryColor = Color(0xFF95A1AC);
 
   static const Color white = Color(0xFFFFFFFF);
@@ -16,37 +16,37 @@ class FlutterFlowTheme {
   String secondaryFontFamily = 'Roboto';
   static TextStyle get title1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: white,
-        fontWeight: FontWeight.bold,
-        fontSize: 34,
+        color: tertiaryColor,
+        fontWeight: FontWeight.w600,
+        fontSize: 24,
       );
   static TextStyle get title2 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: white,
-        fontWeight: FontWeight.bold,
-        fontSize: 24,
+        color: tertiaryColor,
+        fontWeight: FontWeight.w500,
+        fontSize: 22,
       );
   static TextStyle get title3 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: white,
+        color: tertiaryColor,
         fontWeight: FontWeight.bold,
         fontSize: 20,
       );
   static TextStyle get subtitle1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: darkBG,
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   static TextStyle get subtitle2 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: white,
+        color: tertiaryColor,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   static TextStyle get bodyText1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: white,
+        color: tertiaryColor,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );

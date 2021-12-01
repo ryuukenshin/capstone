@@ -5,14 +5,14 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChangePasswordWidget extends StatefulWidget {
-  const ChangePasswordWidget({Key key}) : super(key: key);
+class ForgotPasswordWidget extends StatefulWidget {
+  const ForgotPasswordWidget({Key key}) : super(key: key);
 
   @override
-  _ChangePasswordWidgetState createState() => _ChangePasswordWidgetState();
+  _ForgotPasswordWidgetState createState() => _ForgotPasswordWidgetState();
 }
 
-class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
+class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
   TextEditingController emailAddressController;
   bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -41,7 +41,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
           ),
         ),
         title: Text(
-          'Change Password',
+          'Forgot Password',
           style: FlutterFlowTheme.title2.override(
             fontFamily: 'Lexend Deca',
             color: Colors.white,
@@ -53,12 +53,20 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      backgroundColor: FlutterFlowTheme.primaryBlack,
+      backgroundColor: FlutterFlowTheme.secondaryColor,
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
           color: FlutterFlowTheme.secondaryColor,
+          boxShadow: [
+            BoxShadow(
+              color: FlutterFlowTheme.secondaryColor,
+            )
+          ],
+          border: Border.all(
+            color: FlutterFlowTheme.secondaryColor,
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -85,17 +93,17 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color(0x00000000),
+                      color: FlutterFlowTheme.primaryColor,
                       width: 1,
                     ),
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Color(0x00000000),
+                      color: FlutterFlowTheme.primaryColor,
                       width: 1,
                     ),
-                    borderRadius: BorderRadius.circular(50),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   filled: true,
                   fillColor: FlutterFlowTheme.primaryColor,
@@ -143,7 +151,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                   color: FlutterFlowTheme.primaryBlack,
                   textStyle: FlutterFlowTheme.subtitle2.override(
                     fontFamily: 'Lexend Deca',
-                    color: FlutterFlowTheme.white,
+                    color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

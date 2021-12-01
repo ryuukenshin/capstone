@@ -1,4 +1,4 @@
-# trys
+# capstone
 
 A new Flutter project.
 
