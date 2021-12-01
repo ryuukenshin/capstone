@@ -200,6 +200,27 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                                                   .primaryBlack,
                                                         ),
                                                       ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 4, 0, 0),
+                                                      child: Text(
+                                                        dateTimeFormat(
+                                                            'jms',
+                                                            columnSchedulesRecord
+                                                                .time),
+                                                        style: FlutterFlowTheme
+                                                            .bodyText2
+                                                            .override(
+                                                          fontFamily:
+                                                              'Lexend Deca',
+                                                          color:
+                                                              FlutterFlowTheme
+                                                                  .primaryBlack,
+                                                        ),
+                                                      ),
                                                     )
                                                   ],
                                                 ),

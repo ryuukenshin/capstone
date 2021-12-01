@@ -17,9 +17,10 @@ class ScheduleWidget extends StatefulWidget {
 }
 
 class _ScheduleWidgetState extends State<ScheduleWidget> {
-  DateTime datePicked;
+  DateTime datePicked1;
   TextEditingController textController1;
   TextEditingController textController2;
+  DateTime datePicked2;
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -259,7 +260,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                       context,
                                       showTitleActions: true,
                                       onConfirm: (date) {
-                                        setState(() => datePicked = date);
+                                        setState(() => datePicked1 = date);
                                       },
                                       currentTime: getCurrentTimestamp,
                                     );
@@ -286,7 +287,56 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                           10, 14, 0, 0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          dateTimeFormat('yMd', datePicked),
+                                          dateTimeFormat('yMd', datePicked1),
+                                          ' Date',
+                                        ),
+                                        style:
+                                            FlutterFlowTheme.bodyText1.override(
+                                          fontFamily: 'Lexend Deca',
+                                          color: FlutterFlowTheme.primaryBlack,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16, 16, 16, 0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await DatePicker.showDatePicker(
+                                      context,
+                                      showTitleActions: true,
+                                      onConfirm: (date) {
+                                        setState(() => datePicked2 = date);
+                                      },
+                                      currentTime: getCurrentTimestamp,
+                                    );
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.92,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.primaryColor,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: FlutterFlowTheme.white,
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(8),
+                                      border: Border.all(
+                                        color: FlutterFlowTheme.primaryColor,
+                                        width: 1,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          10, 14, 0, 0),
+                                      child: Text(
+                                        valueOrDefault<String>(
+                                          dateTimeFormat('jms', datePicked2),
                                           ' Date',
                                         ),
                                         style:
@@ -342,7 +392,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                           final schedulesCreateData =
                                               createSchedulesRecordData(
                                             barangay: textController1.text,
-                                            schedule: datePicked,
+                                            schedule: datePicked1,
                                             details: textController2.text,
                                           );
                                           await SchedulesRecord.collection

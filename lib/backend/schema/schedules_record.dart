@@ -21,6 +21,9 @@ abstract class SchedulesRecord
   String get details;
 
   @nullable
+  DateTime get time;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
@@ -49,10 +52,12 @@ Map<String, dynamic> createSchedulesRecordData({
   String barangay,
   DateTime schedule,
   String details,
+  DateTime time,
 }) =>
     serializers.toFirestore(
         SchedulesRecord.serializer,
         SchedulesRecord((s) => s
           ..barangay = barangay
           ..schedule = schedule
-          ..details = details));
+          ..details = details
+          ..time = time));
