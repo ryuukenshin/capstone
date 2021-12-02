@@ -1,5 +1,6 @@
 import '../auth/auth_util.dart';
 import '../backend/backend.dart';
+import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -18,8 +19,8 @@ class ScheduleWidget extends StatefulWidget {
 
 class _ScheduleWidgetState extends State<ScheduleWidget> {
   DateTime datePicked;
-  TextEditingController textController1;
-  TextEditingController textController2;
+  String barangayValue;
+  TextEditingController textController;
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -27,8 +28,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
   @override
   void initState() {
     super.initState();
-    textController1 = TextEditingController();
-    textController2 = TextEditingController();
+    textController = TextEditingController();
   }
 
   @override
@@ -152,12 +152,17 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
-                                      child: AutoSizeText(
-                                        'Fill out the details below to add a new schedule.',
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: FlutterFlowTheme.primaryBlack,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 0, 50),
+                                        child: AutoSizeText(
+                                          'Fill out the details below to add a new schedule.',
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Lexend Deca',
+                                            color:
+                                                FlutterFlowTheme.primaryBlack,
+                                          ),
                                         ),
                                       ),
                                     )
@@ -166,43 +171,48 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                               ),
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 16, 16, 0),
-                                child: TextFormField(
-                                  controller: textController1,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelText: 'Barangay',
-                                    labelStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.primaryBlack,
+                                    40, 0, 40, 12),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.secondaryColor,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(16),
+                                      topRight: Radius.circular(16),
                                     ),
-                                    hintText: 'Enter your task here....',
-                                    hintStyle:
-                                        FlutterFlowTheme.bodyText1.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.white,
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.primaryColor,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.primaryColor,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    filled: true,
-                                    fillColor: FlutterFlowTheme.primaryColor,
                                   ),
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.white,
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 20, 0),
+                                    child: FlutterFlowDropDown(
+                                      initialOption: barangayValue ??=
+                                          'Barangay',
+                                      options: [
+                                        'Lamot 2',
+                                        'Lamot 1',
+                                        'Curva',
+                                        'Kanluran'
+                                      ].toList(),
+                                      onChanged: (val) =>
+                                          setState(() => barangayValue = val),
+                                      width: 10,
+                                      height: 50,
+                                      textStyle:
+                                          FlutterFlowTheme.subtitle2.override(
+                                        fontFamily: 'Lexend Deca',
+                                        color: FlutterFlowTheme.white,
+                                      ),
+                                      fillColor: FlutterFlowTheme.primaryColor,
+                                      elevation: 0,
+                                      borderColor: Colors.transparent,
+                                      borderRadius: 16,
+                                      margin: EdgeInsetsDirectional.fromSTEB(
+                                          10, 0, 0, 0),
+                                      hidesUnderline: true,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -210,7 +220,7 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 16, 16, 0),
                                 child: TextFormField(
-                                  controller: textController2,
+                                  controller: textController,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     labelText: 'Details',
@@ -342,9 +352,9 @@ class _ScheduleWidgetState extends State<ScheduleWidget> {
                                         try {
                                           final schedulesCreateData =
                                               createSchedulesRecordData(
-                                            barangay: textController1.text,
+                                            barangay: barangayValue,
                                             schedule: datePicked,
-                                            details: textController2.text,
+                                            details: textController.text,
                                           );
                                           await SchedulesRecord.collection
                                               .doc()

@@ -131,7 +131,7 @@ class _ToUpdateWidgetState extends State<ToUpdateWidget> {
                                       }
                                       final textSchedulesRecord = snapshot.data;
                                       return Text(
-                                        'Add Schedule',
+                                        'Edit',
                                         style: FlutterFlowTheme.title2.override(
                                           fontFamily: 'Lexend Deca',
                                           color: FlutterFlowTheme.primaryBlack,
@@ -151,7 +151,7 @@ class _ToUpdateWidgetState extends State<ToUpdateWidget> {
                                 children: [
                                   Expanded(
                                     child: AutoSizeText(
-                                      'Fill out the details below to add a new schedule.',
+                                      'Fill out the details below to update the schedule',
                                       style:
                                           FlutterFlowTheme.bodyText1.override(
                                         fontFamily: 'Lexend Deca',
@@ -398,6 +398,8 @@ class _ToUpdateWidgetState extends State<ToUpdateWidget> {
                                       setState(() => _loadingButton1 = true);
                                       try {
                                         Navigator.pop(context);
+                                        await columnSchedulesRecord.reference
+                                            .delete();
                                       } finally {
                                         setState(() => _loadingButton1 = false);
                                       }

@@ -43,7 +43,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             ),
           ),
           flexibleSpace: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(30, 30, 30, 30),
             child: Text(
               'Forgot Password',
               textAlign: TextAlign.center,

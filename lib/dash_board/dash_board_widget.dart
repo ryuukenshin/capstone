@@ -33,7 +33,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
           backgroundColor: FlutterFlowTheme.primaryBlack,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(30, 50, 30, 30),
             child: Text(
               'Dashboard',
               textAlign: TextAlign.center,
@@ -57,17 +57,17 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
             ),
           );
         },
-        backgroundColor: FlutterFlowTheme.primaryColor,
+        backgroundColor: FlutterFlowTheme.darkBG,
         icon: Icon(
           Icons.add,
-          color: FlutterFlowTheme.primaryBlack,
+          color: FlutterFlowTheme.white,
         ),
         elevation: 8,
         label: Text(
           'Create a schedule',
           style: FlutterFlowTheme.subtitle2.override(
             fontFamily: 'Lexend Deca',
-            color: FlutterFlowTheme.primaryBlack,
+            color: FlutterFlowTheme.white,
           ),
         ),
       ),
@@ -146,7 +146,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                       child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        height: 80,
+                                        height: 120,
                                         decoration: BoxDecoration(
                                           color:
                                               FlutterFlowTheme.secondaryColor,
@@ -178,6 +178,9 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                                             'Lexend Deca',
                                                         color: FlutterFlowTheme
                                                             .primaryBlack,
+                                                        fontSize: 30,
+                                                        fontWeight:
+                                                            FontWeight.bold,
                                                       ),
                                                     ),
                                                     Padding(
@@ -198,6 +201,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                                           color:
                                                               FlutterFlowTheme
                                                                   .primaryBlack,
+                                                          fontSize: 20,
                                                         ),
                                                       ),
                                                     ),
@@ -219,6 +223,7 @@ class _DashBoardWidgetState extends State<DashBoardWidget> {
                                                           color:
                                                               FlutterFlowTheme
                                                                   .primaryBlack,
+                                                          fontSize: 18,
                                                         ),
                                                       ),
                                                     )

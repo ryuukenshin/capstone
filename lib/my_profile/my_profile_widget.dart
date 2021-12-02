@@ -135,25 +135,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
-                                myProfileUsersRecord.displayName,
+                                myProfileUsersRecord.fullName,
                                 style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.primaryBlack,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                              child: Text(
-                                myProfileUsersRecord.userRole,
-                                style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.primaryBlack,
                                 ),
@@ -368,12 +351,13 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             },
                             text: 'Log Out',
                             options: FFButtonOptions(
-                              width: 90,
-                              height: 40,
+                              width: 100,
+                              height: 50,
                               color: FlutterFlowTheme.primaryBlack,
                               textStyle: FlutterFlowTheme.bodyText2.override(
                                 fontFamily: 'Lexend Deca',
                                 color: FlutterFlowTheme.white,
+                                fontSize: 16,
                               ),
                               elevation: 3,
                               borderSide: BorderSide(

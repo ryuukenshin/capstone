@@ -22,7 +22,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   bool _loadingButton1 = false;
   bool _loadingButton2 = false;
   bool _loadingButton3 = false;
-  bool _loadingButton4 = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -333,42 +332,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                       borderRadius: 30,
                     ),
                     loading: _loadingButton3,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                  child: FFButtonWidget(
-                    onPressed: () async {
-                      setState(() => _loadingButton4 = true);
-                      try {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                NavBarPage(initialPage: 'dashBoard'),
-                          ),
-                        );
-                      } finally {
-                        setState(() => _loadingButton4 = false);
-                      }
-                    },
-                    text: 'Continue as Guest',
-                    options: FFButtonOptions(
-                      width: 200,
-                      height: 55,
-                      color: FlutterFlowTheme.tertiaryColor,
-                      textStyle: FlutterFlowTheme.subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.primaryBlack,
-                      ),
-                      elevation: 4,
-                      borderSide: BorderSide(
-                        color: Colors.transparent,
-                        width: 2,
-                      ),
-                      borderRadius: 30,
-                    ),
-                    loading: _loadingButton4,
                   ),
                 )
               ],
