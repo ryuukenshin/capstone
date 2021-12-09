@@ -10,6 +10,7 @@ import '../flutter_flow/upload_media.dart';
 import '../login/login_widget.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyProfileWidget extends StatefulWidget {
@@ -21,7 +22,6 @@ class MyProfileWidget extends StatefulWidget {
 
 class _MyProfileWidgetState extends State<MyProfileWidget> {
   String uploadedFileUrl = '';
-  bool _loadingButton = false;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -35,8 +35,9 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
             child: SizedBox(
               width: 50,
               height: 50,
-              child: CircularProgressIndicator(
+              child: SpinKitRing(
                 color: FlutterFlowTheme.primaryColor,
+                size: 50,
               ),
             ),
           );
@@ -55,7 +56,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                     width: MediaQuery.of(context).size.width,
                     height: 350,
                     decoration: BoxDecoration(
-                      color: FlutterFlowTheme.primaryColor,
+                      color: FlutterFlowTheme.black,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -70,7 +71,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 100, 0, 0),
+                                          0, 160, 0, 0),
                                       child: InkWell(
                                         onTap: () async {
                                           final selectedMedia =
@@ -135,10 +136,27 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
                               child: Text(
-                                myProfileUsersRecord.fullName,
+                                myProfileUsersRecord.firstName,
                                 style: FlutterFlowTheme.title1.override(
                                   fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.primaryBlack,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                              child: Text(
+                                myProfileUsersRecord.userRole,
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: FlutterFlowTheme.white,
                                 ),
                               ),
                             )
@@ -150,27 +168,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             myProfileUsersRecord.email,
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.primaryBlack,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                          child: Text(
-                            myProfileUsersRecord.phoneNumber,
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.primaryBlack,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                          child: Text(
-                            myProfileUsersRecord.barangay,
-                            style: FlutterFlowTheme.bodyText1.override(
-                              fontFamily: 'Lexend Deca',
-                              color: FlutterFlowTheme.primaryBlack,
+                              color: FlutterFlowTheme.white,
                             ),
                           ),
                         )
@@ -182,20 +180,25 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
               Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 16, 0, 16),
-                        child: Text(
-                          'Account Settings',
-                          style: FlutterFlowTheme.subtitle2.override(
-                            fontFamily: 'Lexend Deca',
-                            color: FlutterFlowTheme.primaryBlack,
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(24, 16, 0, 16),
+                          child: Text(
+                            'Account Settings',
+                            style: FlutterFlowTheme.bodyText1.override(
+                              fontFamily: 'Lexend Deca',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -213,13 +216,6 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             width: MediaQuery.of(context).size.width,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: FlutterFlowTheme.white,
-                                  offset: Offset(0, 1),
-                                )
-                              ],
                               shape: BoxShape.rectangle,
                             ),
                             child: InkWell(
@@ -243,11 +239,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                         24, 0, 0, 0),
                                     child: Text(
                                       'Edit Profile',
-                                      style:
-                                          FlutterFlowTheme.subtitle2.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: FlutterFlowTheme.primaryBlack,
-                                      ),
+                                      style: FlutterFlowTheme.subtitle2,
                                     ),
                                   ),
                                   Expanded(
@@ -255,7 +247,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       alignment: AlignmentDirectional(0.9, 0),
                                       child: Icon(
                                         Icons.arrow_forward_ios,
-                                        color: FlutterFlowTheme.primaryBlack,
+                                        color: Color(0xFF95A1AC),
                                         size: 18,
                                       ),
                                     ),
@@ -276,13 +268,6 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             width: MediaQuery.of(context).size.width,
                             height: 60,
                             decoration: BoxDecoration(
-                              color: FlutterFlowTheme.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: FlutterFlowTheme.white,
-                                  offset: Offset(0, 1),
-                                )
-                              ],
                               shape: BoxShape.rectangle,
                             ),
                             child: InkWell(
@@ -303,11 +288,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                         24, 0, 0, 0),
                                     child: Text(
                                       'Change Password',
-                                      style:
-                                          FlutterFlowTheme.subtitle2.override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: FlutterFlowTheme.primaryBlack,
-                                      ),
+                                      style: FlutterFlowTheme.subtitle2,
                                     ),
                                   ),
                                   Expanded(
@@ -315,7 +296,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                       alignment: AlignmentDirectional(0.9, 0),
                                       child: Icon(
                                         Icons.arrow_forward_ios,
-                                        color: FlutterFlowTheme.primaryBlack,
+                                        color: Color(0xFF95A1AC),
                                         size: 18,
                                       ),
                                     ),
@@ -335,29 +316,23 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              setState(() => _loadingButton = true);
-                              try {
-                                await signOut();
-                                await Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => LoginWidget(),
-                                  ),
-                                  (r) => false,
-                                );
-                              } finally {
-                                setState(() => _loadingButton = false);
-                              }
+                              await signOut();
+                              await Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => LoginWidget(),
+                                ),
+                                (r) => false,
+                              );
                             },
                             text: 'Log Out',
                             options: FFButtonOptions(
                               width: 100,
                               height: 50,
-                              color: FlutterFlowTheme.primaryBlack,
+                              color: FlutterFlowTheme.primaryColor,
                               textStyle: FlutterFlowTheme.bodyText2.override(
                                 fontFamily: 'Lexend Deca',
                                 color: FlutterFlowTheme.white,
-                                fontSize: 16,
                               ),
                               elevation: 3,
                               borderSide: BorderSide(
@@ -366,7 +341,6 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                               ),
                               borderRadius: 30,
                             ),
-                            loading: _loadingButton,
                           )
                         ],
                       ),

@@ -5,54 +5,54 @@ import 'package:google_fonts/google_fonts.dart';
 class FlutterFlowTheme {
   static const Color primaryColor = Color(0xFF359F8A);
   static const Color secondaryColor = Color(0xFF42BEA5);
-  static const Color tertiaryColor = Color(0xFF95A1AC);
+  static const Color tertiaryColor = Color(0xFF131619);
 
-  static const Color white = Color(0xFFFFFFFF);
-  static const Color grayBG = Color(0xFFDBE2E7);
-  static const Color darkBG = Color(0xFF1A1F24);
-  static const Color primaryBlack = Color(0xFF131619);
+  static const Color black = Color(0xFF1A1F24);
+  static const Color darkGray = Color(0xFF95A1AC);
+  static const Color white = Color(0xFFDBE2E7);
+  static const Color gray = Color(0xFFDBE2E7);
 
   String primaryFontFamily = 'Poppins';
   String secondaryFontFamily = 'Roboto';
   static TextStyle get title1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.w600,
         fontSize: 24,
       );
   static TextStyle get title2 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.w500,
         fontSize: 22,
       );
   static TextStyle get title3 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.bold,
         fontSize: 20,
       );
   static TextStyle get subtitle1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: darkBG,
+        color: black,
         fontWeight: FontWeight.w500,
         fontSize: 18,
       );
   static TextStyle get subtitle2 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.normal,
         fontSize: 16,
       );
   static TextStyle get bodyText1 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.normal,
         fontSize: 14,
       );
   static TextStyle get bodyText2 => GoogleFonts.getFont(
         'Lexend Deca',
-        color: tertiaryColor,
+        color: black,
         fontWeight: FontWeight.normal,
         fontSize: 12,
       );

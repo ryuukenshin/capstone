@@ -2,25 +2,27 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../verify_phone/verify_phone_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ForgotPasswordWidget extends StatefulWidget {
-  const ForgotPasswordWidget({Key key}) : super(key: key);
+class PhoneVerificationWidget extends StatefulWidget {
+  const PhoneVerificationWidget({Key key}) : super(key: key);
 
   @override
-  _ForgotPasswordWidgetState createState() => _ForgotPasswordWidgetState();
+  _PhoneVerificationWidgetState createState() =>
+      _PhoneVerificationWidgetState();
 }
 
-class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
-  TextEditingController emailAddressController;
+class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
+  TextEditingController phoneNumberController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    emailAddressController = TextEditingController();
+    phoneNumberController = TextEditingController();
   }
 
   @override
@@ -32,20 +34,15 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.black,
           automaticallyImplyLeading: false,
-          leading: InkWell(
-            onTap: () async {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.chevron_left_rounded,
-              color: Colors.white,
-              size: 32,
-            ),
+          leading: Icon(
+            Icons.chevron_left_rounded,
+            color: Colors.white,
+            size: 32,
           ),
           flexibleSpace: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
             child: Text(
-              'Forgot Password',
+              'Phone Sign In',
               textAlign: TextAlign.center,
               style: FlutterFlowTheme.title2.override(
                 fontFamily: 'Lexend Deca',
@@ -72,22 +69,32 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+                child: Text(
+                  'Enter your phone number and we will send you an SMS verification code to this number',
+                  style: FlutterFlowTheme.subtitle1.override(
+                    fontFamily: 'Lexend Deca',
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 30, 20, 0),
                 child: TextFormField(
-                  controller: emailAddressController,
+                  controller: phoneNumberController,
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Your Email Address',
+                    labelText: 'Your Phone Number',
                     labelStyle: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Lexend Deca',
                       color: FlutterFlowTheme.black,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
-                    hintText: 'Please enter a email...',
+                    hintText: 'Please enter a valid number...',
                     hintStyle: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Lexend Deca',
-                      color: Color(0x98FFFFFF),
+                      color: FlutterFlowTheme.primaryColor,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
@@ -96,14 +103,14 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                         color: FlutterFlowTheme.primaryColor,
                         width: 3,
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: FlutterFlowTheme.primaryColor,
                         width: 3,
                       ),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(50),
                     ),
                     filled: true,
                     fillColor: FlutterFlowTheme.white,
@@ -116,30 +123,37 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                     fontSize: 14,
                     fontWeight: FontWeight.normal,
                   ),
-                  keyboardType: TextInputType.emailAddress,
                 ),
               ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (emailAddressController.text.isEmpty) {
+                    if (phoneNumberController.text.isEmpty ||
+                        !phoneNumberController.text.startsWith('+')) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Email required!',
-                          ),
+                              'Phone Number is required and has to start with +.'),
                         ),
                       );
                       return;
                     }
-                    await resetPassword(
-                      email: emailAddressController.text,
+                    await beginPhoneAuth(
                       context: context,
+                      phoneNumber: phoneNumberController.text,
+                      onCodeSent: () async {
+                        await Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => VerifyPhoneWidget(),
+                          ),
+                          (r) => false,
+                        );
+                      },
                     );
-                    Navigator.pop(context);
                   },
-                  text: 'Send Reset Link',
+                  text: 'Sign in with Phone',
                   options: FFButtonOptions(
                     width: 230,
                     height: 60,
@@ -155,7 +169,7 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
                       color: Colors.transparent,
                       width: 1,
                     ),
-                    borderRadius: 40,
+                    borderRadius: 30,
                   ),
                 ),
               )

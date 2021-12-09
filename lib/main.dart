@@ -8,7 +8,8 @@ import 'auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import 'package:capstone/login/login_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
-import 'dash_board/dash_board_widget.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'dashboard/dashboard_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 
 void main() async {
@@ -26,6 +27,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Stream<CapstoneFirebaseUser> userStream;
   CapstoneFirebaseUser initialUser;
+  bool displaySplashImage = true;
   final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
@@ -33,6 +35,8 @@ class _MyAppState extends State<MyApp> {
     super.initState();
     userStream = capstoneFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
+    Future.delayed(
+        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
   }
 
   @override
@@ -53,13 +57,14 @@ class _MyAppState extends State<MyApp> {
       ],
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: initialUser == null
+      home: initialUser == null || displaySplashImage
           ? const Center(
               child: SizedBox(
                 width: 50,
                 height: 50,
-                child: CircularProgressIndicator(
+                child: SpinKitRing(
                   color: FlutterFlowTheme.primaryColor,
+                  size: 50,
                 ),
               ),
             )
@@ -81,7 +86,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPage = 'dashBoard';
+  String _currentPage = 'dashboard';
 
   @override
   void initState() {
@@ -92,7 +97,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'dashBoard': DashBoardWidget(),
+      'dashboard': DashboardWidget(),
       'myProfile': MyProfileWidget(),
     };
     return Scaffold(
@@ -101,14 +106,10 @@ class _NavBarPageState extends State<NavBarPage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.home,
+              Icons.home_outlined,
               size: 24,
             ),
-            activeIcon: Icon(
-              Icons.home,
-              size: 24,
-            ),
-            label: '',
+            label: 'Home',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -124,10 +125,10 @@ class _NavBarPageState extends State<NavBarPage> {
             tooltip: '',
           )
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: FlutterFlowTheme.white,
         currentIndex: tabs.keys.toList().indexOf(_currentPage),
         selectedItemColor: FlutterFlowTheme.primaryColor,
-        unselectedItemColor: FlutterFlowTheme.secondaryColor,
+        unselectedItemColor: FlutterFlowTheme.black,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
         showSelectedLabels: false,
         showUnselectedLabels: false,
