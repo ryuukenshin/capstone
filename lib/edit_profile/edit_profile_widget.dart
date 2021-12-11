@@ -15,12 +15,12 @@ class EditProfileWidget extends StatefulWidget {
     Key key,
     this.userEmail,
     this.userDisplay,
-    this.userPhoto,
+    this.photoUrl,
   }) : super(key: key);
 
   final UsersRecord userEmail;
   final UsersRecord userDisplay;
-  final DocumentReference userPhoto;
+  final String photoUrl;
 
   @override
   _EditProfileWidgetState createState() => _EditProfileWidgetState();
@@ -143,7 +143,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                             child: Image.network(
                               valueOrDefault<String>(
                                 editProfileUsersRecord.photoUrl,
-                                'https://img-premium.flaticon.com/png/512/4886/premium/4886318.png?token=exp=1629155806~hmac=8593bfc502d7901620d7bf8031966c83',
+                                'https://image.flaticon.com/icons/png/512/599/599305.png',
                               ),
                             ),
                           ),

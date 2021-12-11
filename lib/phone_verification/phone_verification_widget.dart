@@ -2,6 +2,7 @@ import '../auth/auth_util.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../login/login_widget.dart';
 import '../verify_phone/verify_phone_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -34,10 +35,20 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
         child: AppBar(
           backgroundColor: FlutterFlowTheme.black,
           automaticallyImplyLeading: false,
-          leading: Icon(
-            Icons.chevron_left_rounded,
-            color: Colors.white,
-            size: 32,
+          leading: InkWell(
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginWidget(),
+                ),
+              );
+            },
+            child: Icon(
+              Icons.chevron_left_rounded,
+              color: Colors.white,
+              size: 32,
+            ),
           ),
           flexibleSpace: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),

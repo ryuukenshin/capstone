@@ -106,7 +106,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               ),
               Divider(),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 110),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 110),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -250,7 +250,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
-                                NavBarPage(initialPage: 'myProfile'),
+                                NavBarPage(initialPage: 'dashboard'),
                           ),
                         );
                       },

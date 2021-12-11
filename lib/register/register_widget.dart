@@ -6,12 +6,18 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../login/login_widget.dart';
 import '../main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class RegisterWidget extends StatefulWidget {
-  const RegisterWidget({Key key}) : super(key: key);
+  const RegisterWidget({
+    Key key,
+    this.barangay,
+  }) : super(key: key);
+
+  final DocumentReference barangay;
 
   @override
   _RegisterWidgetState createState() => _RegisterWidgetState();
@@ -301,7 +307,26 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                             ),
                           ),
                           child: FlutterFlowDropDown(
-                            options: ['Barangay'].toList(),
+                            options: [
+                              'Barangay',
+                              'Balayhangin',
+                              'Bangyas',
+                              'Dayap',
+                              'Hanggan',
+                              'Imok',
+                              'Lamot 1',
+                              'Lamot 2',
+                              'Limao',
+                              'Mabacan',
+                              'Masiit',
+                              'Paliparan',
+                              'Pérez',
+                              'Kanluran',
+                              'Silangan',
+                              'Prinza',
+                              'San Isidro',
+                              'Santo Tomás'
+                            ].toList(),
                             onChanged: (val) =>
                                 setState(() => dropDownValue = val),
                             width: 180,
@@ -564,10 +589,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                           final usersCreateData = createUsersRecordData(
                             firstName: firstnameController.text,
                             lastName: lastNameController.text,
-                            barangay: dropDownValue,
                             password: passwordController.text,
                             email: emailAddressController.text,
                             phoneNumber: phoneNumberController.text,
+                            barangay: dropDownValue,
                           );
                           await UsersRecord.collection
                               .doc(user.uid)
@@ -617,12 +642,8 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                               onPressed: () async {
                                 await Navigator.pushAndRemoveUntil(
                                   context,
-                                  PageTransition(
-                                    type: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 150),
-                                    reverseDuration:
-                                        Duration(milliseconds: 150),
-                                    child: LoginWidget(),
+                                  MaterialPageRoute(
+                                    builder: (context) => LoginWidget(),
                                   ),
                                   (r) => false,
                                 );

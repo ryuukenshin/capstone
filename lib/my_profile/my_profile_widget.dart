@@ -226,7 +226,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     builder: (context) => EditProfileWidget(
                                       userEmail: myProfileUsersRecord,
                                       userDisplay: myProfileUsersRecord,
-                                      userPhoto: myProfileUsersRecord.reference,
+                                      photoUrl: myProfileUsersRecord.photoUrl,
                                     ),
                                   ),
                                 );

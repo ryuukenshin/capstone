@@ -10,6 +10,7 @@ import 'package:capstone/login/login_widget.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dashboard/dashboard_widget.dart';
+import 'create_alarm/create_alarm_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 
 void main() async {
@@ -98,6 +99,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'dashboard': DashboardWidget(),
+      'createAlarm': CreateAlarmWidget(),
       'myProfile': MyProfileWidget(),
     };
     return Scaffold(
@@ -107,6 +109,18 @@ class _NavBarPageState extends State<NavBarPage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
+              size: 24,
+            ),
+            activeIcon: Icon(
+              Icons.home,
+              size: 24,
+            ),
+            label: 'Home',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.notifications,
               size: 24,
             ),
             label: 'Home',

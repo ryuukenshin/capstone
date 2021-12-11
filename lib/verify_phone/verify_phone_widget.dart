@@ -3,6 +3,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
+import '../phone_verification/phone_verification_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,11 +33,21 @@ class _VerifyPhoneWidgetState extends State<VerifyPhoneWidget> {
         preferredSize: Size.fromHeight(100),
         child: AppBar(
           backgroundColor: FlutterFlowTheme.black,
-          automaticallyImplyLeading: false,
-          leading: Icon(
-            Icons.chevron_left_rounded,
-            color: Colors.white,
-            size: 32,
+          automaticallyImplyLeading: true,
+          leading: InkWell(
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PhoneVerificationWidget(),
+                ),
+              );
+            },
+            child: Icon(
+              Icons.chevron_left_rounded,
+              color: Colors.white,
+              size: 32,
+            ),
           ),
           flexibleSpace: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
