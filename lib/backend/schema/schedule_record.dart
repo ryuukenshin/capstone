@@ -21,9 +21,6 @@ abstract class ScheduleRecord
   DateTime get date;
 
   @nullable
-  DateTime get time;
-
-  @nullable
   @BuiltValueField(wireName: 'created_time')
   DateTime get createdTime;
 
@@ -64,7 +61,6 @@ Map<String, dynamic> createScheduleRecordData({
   String details,
   String wasteType,
   DateTime date,
-  DateTime time,
   DateTime createdTime,
   String barangay,
   String notifDate,
@@ -75,7 +71,6 @@ Map<String, dynamic> createScheduleRecordData({
           ..details = details
           ..wasteType = wasteType
           ..date = date
-          ..time = time
           ..createdTime = createdTime
           ..barangay = barangay
           ..notifDate = notifDate));
