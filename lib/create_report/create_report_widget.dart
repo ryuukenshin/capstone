@@ -1,6 +1,12 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
+import '../backend/firebase_storage/storage.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../flutter_flow/upload_media.dart';
+import '../main.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +19,8 @@ class CreateReportWidget extends StatefulWidget {
 }
 
 class _CreateReportWidgetState extends State<CreateReportWidget> {
+  String uploadedFileUrl1 = '';
+  String uploadedFileUrl2 = '';
   TextEditingController subjectController;
   TextEditingController textController2;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -73,7 +81,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Lexend Deca',
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   )
@@ -132,7 +140,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                       style: FlutterFlowTheme.bodyText1.override(
                         fontFamily: 'Lexend Deca',
                         fontSize: 20,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   )
@@ -169,11 +177,11 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                             topRight: Radius.circular(4.0),
                           ),
                         ),
-                        filled: true,
                         contentPadding:
                             EdgeInsetsDirectional.fromSTEB(1, 1, 1, 1),
                       ),
                       style: FlutterFlowTheme.bodyText1,
+                      textAlign: TextAlign.justify,
                       maxLines: 10,
                     ),
                   )
@@ -194,7 +202,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       )
                     ],
@@ -207,7 +215,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                         style: FlutterFlowTheme.bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           fontSize: 20,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                         ),
                       )
                     ],
@@ -224,22 +232,75 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Image.asset(
-                        'assets/images/add-2935429_960_720.png',
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () async {
+                          final selectedMedia =
+                              await selectMediaWithSourceBottomSheet(
+                            context: context,
+                            allowPhoto: true,
+                          );
+                          if (selectedMedia != null &&
+                              validateFileFormat(
+                                  selectedMedia.storagePath, context)) {
+                            showUploadMessage(context, 'Uploading file...',
+                                showLoading: true);
+                            final downloadUrl = await uploadData(
+                                selectedMedia.storagePath, selectedMedia.bytes);
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            if (downloadUrl != null) {
+                              setState(() => uploadedFileUrl1 = downloadUrl);
+                              showUploadMessage(context, 'Success!');
+                            } else {
+                              showUploadMessage(
+                                  context, 'Failed to upload media');
+                              return;
+                            }
+                          }
+                        },
+                        child: Image.asset(
+                          'assets/images/add-2935429_960_720.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
                       )
                     ],
                   ),
                   Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      Image.asset(
-                        'assets/images/add-2935429_960_720.png',
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
+                      InkWell(
+                        onTap: () async {
+                          final selectedMedia =
+                              await selectMediaWithSourceBottomSheet(
+                            context: context,
+                            allowPhoto: false,
+                            allowVideo: true,
+                          );
+                          if (selectedMedia != null &&
+                              validateFileFormat(
+                                  selectedMedia.storagePath, context)) {
+                            showUploadMessage(context, 'Uploading file...',
+                                showLoading: true);
+                            final downloadUrl = await uploadData(
+                                selectedMedia.storagePath, selectedMedia.bytes);
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                            if (downloadUrl != null) {
+                              setState(() => uploadedFileUrl2 = downloadUrl);
+                              showUploadMessage(context, 'Success!');
+                            } else {
+                              showUploadMessage(
+                                  context, 'Failed to upload media');
+                              return;
+                            }
+                          }
+                        },
+                        child: Image.asset(
+                          'assets/images/add-2935429_960_720.png',
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
                       )
                     ],
                   )
@@ -249,10 +310,38 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
               child: FFButtonWidget(
-                onPressed: () {
-                  print('Button pressed ...');
+                onPressed: () async {
+                  final reportCreateData = createReportRecordData(
+                    content: textController2.text,
+                    subject: subjectController.text,
+                    image: uploadedFileUrl1,
+                    video: uploadedFileUrl2,
+                  );
+                  await ReportRecord.collection.doc().set(reportCreateData);
+                  await showDialog(
+                    context: context,
+                    builder: (alertDialogContext) {
+                      return AlertDialog(
+                        title: Text('Notice'),
+                        content: Text('Report has been successfully submitted'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(alertDialogContext),
+                            child: Text('Ok'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NavBarPage(initialPage: 'dashboard'),
+                    ),
+                  );
                 },
-                text: 'Button',
+                text: 'Submit',
                 options: FFButtonOptions(
                   width: 200,
                   height: 70,

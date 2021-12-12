@@ -362,11 +362,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                               decoration: InputDecoration(
                                 labelText: 'Phone number',
                                 labelStyle: FlutterFlowTheme.bodyText1,
-                                hintText: '+ 639',
-                                hintStyle: FlutterFlowTheme.bodyText1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: FlutterFlowTheme.tertiaryColor,
-                                ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
                                     color: Color(0x00000000),
@@ -474,10 +469,10 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                               ),
                               validator: (val) {
                                 if (val.isEmpty) {
-                                  return 'Please enter atleast 6 characters';
+                                  return 'Please enter atleast 8 characters';
                                 }
-                                if (val.length < 6) {
-                                  return 'Requires at least 6 characters.';
+                                if (val.length < 8) {
+                                  return 'Requires at least 8 characters.';
                                 }
                                 return null;
                               },
@@ -550,6 +545,13 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                 fontFamily: 'Lexend Deca',
                                 color: FlutterFlowTheme.tertiaryColor,
                               ),
+                              validator: (val) {
+                                if (val.isEmpty) {
+                                  return 'Field is required';
+                                }
+
+                                return null;
+                              },
                             ),
                           ),
                         ),
@@ -599,6 +601,23 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                                   NavBarPage(initialPage: 'dashboard'),
                             ),
                             (r) => false,
+                          );
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Account'),
+                                content: Text(
+                                    'Account has been created successfully'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
                           );
                         },
                         text: 'Create Account',

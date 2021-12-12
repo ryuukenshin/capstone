@@ -68,10 +68,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                                  EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                               child: Text(
                                 'Welcome, ',
-                                textAlign: TextAlign.end,
+                                textAlign: TextAlign.start,
                                 style: FlutterFlowTheme.title1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.white,
@@ -80,18 +80,14 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             ),
                           ),
                           Expanded(
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                              child: AuthUserStreamWidget(
-                                child: Text(
-                                  currentUserDocument?.firstName,
-                                  textAlign: TextAlign.start,
-                                  style: FlutterFlowTheme.title1.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.white,
-                                    fontSize: 20,
-                                  ),
+                            child: AuthUserStreamWidget(
+                              child: Text(
+                                currentUserDocument?.firstName,
+                                textAlign: TextAlign.center,
+                                style: FlutterFlowTheme.title1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: FlutterFlowTheme.white,
+                                  fontSize: 24,
                                 ),
                               ),
                             ),
@@ -147,8 +143,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     'My schedule of collection',
                                     style: FlutterFlowTheme.title2.override(
                                       fontFamily: 'Lexend Deca',
-                                      color: FlutterFlowTheme.primaryColor,
-                                      fontWeight: FontWeight.bold,
+                                      color: FlutterFlowTheme.black,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 )
@@ -348,7 +344,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                           color:
                                                                               FlutterFlowTheme.black,
                                                                           fontSize:
-                                                                              25,
+                                                                              30,
                                                                           fontWeight:
                                                                               FontWeight.bold,
                                                                         ),
@@ -409,7 +405,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                       return Text(
                                                                         dateTimeFormat(
                                                                             'M/d h:m a',
-                                                                            columnScheduleRecord.date),
+                                                                            textScheduleRecord.date),
                                                                         style: FlutterFlowTheme
                                                                             .bodyText2
                                                                             .override(
@@ -417,6 +413,8 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                                               'Lexend Deca',
                                                                           color:
                                                                               FlutterFlowTheme.white,
+                                                                          fontSize:
+                                                                              15,
                                                                           fontWeight:
                                                                               FontWeight.w600,
                                                                         ),
@@ -480,10 +478,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         )
                       ],
                     ),
-                  ),
-                  Divider(
-                    height: 1,
-                    color: FlutterFlowTheme.darkGray,
                   ),
                   Divider(
                     thickness: 2,

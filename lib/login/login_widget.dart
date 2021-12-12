@@ -253,6 +253,24 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 NavBarPage(initialPage: 'dashboard'),
                           ),
                         );
+                        if (currentUserEmailVerified) {
+                          await showDialog(
+                            context: context,
+                            builder: (alertDialogContext) {
+                              return AlertDialog(
+                                title: Text('Login'),
+                                content: Text('login successful'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () =>
+                                        Navigator.pop(alertDialogContext),
+                                    child: Text('Ok'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
                       },
                       text: 'Log In',
                       options: FFButtonOptions(

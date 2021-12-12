@@ -87,7 +87,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                     hintText: 'Please enter a email...',
                     hintStyle: FlutterFlowTheme.bodyText1.override(
                       fontFamily: 'Lexend Deca',
-                      color: Color(0x98FFFFFF),
+                      color: FlutterFlowTheme.black,
                       fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),

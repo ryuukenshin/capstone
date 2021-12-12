@@ -27,7 +27,7 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(25),
+        preferredSize: Size.fromHeight(50),
         child: AppBar(
           backgroundColor: Color(0xFF090F13),
           automaticallyImplyLeading: false,
@@ -183,6 +183,7 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
                                                             'Lexend Deca',
                                                         color: FlutterFlowTheme
                                                             .white,
+                                                        fontSize: 28,
                                                       ),
                                                     ),
                                                     Padding(
@@ -201,6 +202,7 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
                                                           color:
                                                               FlutterFlowTheme
                                                                   .primaryColor,
+                                                          fontSize: 20,
                                                         ),
                                                       ),
                                                     ),
@@ -220,6 +222,7 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
                                                           color:
                                                               FlutterFlowTheme
                                                                   .darkGray,
+                                                          fontSize: 16,
                                                         ),
                                                       ),
                                                     )
@@ -258,6 +261,39 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
                                                         await columnScheduleRecord
                                                             .reference
                                                             .delete();
+                                                        await showDialog(
+                                                          context: context,
+                                                          builder:
+                                                              (alertDialogContext) {
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Please confirm your action'),
+                                                              content: Text(
+                                                                  'Are you sure you\'re done already?'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Cancel'),
+                                                                ),
+                                                                TextButton(
+                                                                  onPressed:
+                                                                      () async {
+                                                                    Navigator.pop(
+                                                                        alertDialogContext);
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    ;
+                                                                  },
+                                                                  child: Text(
+                                                                      'Confirm'),
+                                                                ),
+                                                              ],
+                                                            );
+                                                          },
+                                                        );
                                                       },
                                                     ),
                                                     Column(
@@ -271,7 +307,7 @@ class _CreateAlarmWidgetState extends State<CreateAlarmWidget> {
                                                           padding:
                                                               EdgeInsetsDirectional
                                                                   .fromSTEB(0,
-                                                                      10, 1, 0),
+                                                                      0, 1, 0),
                                                           child: Text(
                                                             'mark as done',
                                                             style:

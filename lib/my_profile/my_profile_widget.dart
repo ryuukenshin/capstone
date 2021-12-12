@@ -54,6 +54,12 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                     height: 350,
                     decoration: BoxDecoration(
                       color: FlutterFlowTheme.black,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: Image.asset(
+                          'assets/images/241e41dd1324f4e71d48d01e4e0e4eb5.jpg',
+                        ).image,
+                      ),
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
@@ -68,7 +74,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                     alignment: AlignmentDirectional(0, 0),
                                     child: Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 160, 0, 0),
+                                          0, 100, 0, 0),
                                       child: Container(
                                         width: 80,
                                         height: 80,
@@ -90,22 +96,38 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             )
                           ],
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: Text(
-                                myProfileUsersRecord.firstName,
-                                style: FlutterFlowTheme.title1.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Colors.white,
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 5, 0),
+                                child: Text(
+                                  myProfileUsersRecord.firstName,
+                                  style: FlutterFlowTheme.title1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            )
-                          ],
+                              Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
+                                child: Text(
+                                  myProfileUsersRecord.lastName,
+                                  style: FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: FlutterFlowTheme.white,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -119,6 +141,8 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                 style: FlutterFlowTheme.bodyText1.override(
                                   fontFamily: 'Lexend Deca',
                                   color: FlutterFlowTheme.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             )
@@ -131,6 +155,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
                               color: FlutterFlowTheme.white,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         )
@@ -154,7 +179,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                             'Account Settings',
                             style: FlutterFlowTheme.bodyText1.override(
                               fontFamily: 'Lexend Deca',
-                              fontSize: 16,
+                              fontSize: 24,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -167,6 +192,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.zero,
+                  primary: false,
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
@@ -204,16 +230,24 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                         24, 0, 0, 0),
                                     child: Text(
                                       'Edit Profile',
-                                      style: FlutterFlowTheme.subtitle2,
+                                      style:
+                                          FlutterFlowTheme.subtitle2.override(
+                                        fontFamily: 'Lexend Deca',
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
                                   Expanded(
                                     child: Align(
                                       alignment: AlignmentDirectional(0.9, 0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF95A1AC),
-                                        size: 18,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
                                       ),
                                     ),
                                   )
@@ -253,16 +287,24 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                                         24, 0, 0, 0),
                                     child: Text(
                                       'Change Password',
-                                      style: FlutterFlowTheme.subtitle2,
+                                      style:
+                                          FlutterFlowTheme.subtitle2.override(
+                                        fontFamily: 'Lexend Deca',
+                                        fontSize: 20,
+                                      ),
                                     ),
                                   ),
                                   Expanded(
                                     child: Align(
                                       alignment: AlignmentDirectional(0.9, 0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: Color(0xFF95A1AC),
-                                        size: 18,
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
                                       ),
                                     ),
                                   )
@@ -274,7 +316,70 @@ class _MyProfileWidgetState extends State<MyProfileWidget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                            ),
+                            child: InkWell(
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => EditProfileWidget(
+                                      userEmail: myProfileUsersRecord,
+                                      userDisplay: myProfileUsersRecord,
+                                      photoUrl: myProfileUsersRecord.photoUrl,
+                                      firstName: myProfileUsersRecord,
+                                      lastName: myProfileUsersRecord,
+                                      barangay: myProfileUsersRecord,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24, 0, 0, 0),
+                                    child: Text(
+                                      'Notification',
+                                      style:
+                                          FlutterFlowTheme.subtitle2.override(
+                                        fontFamily: 'Lexend Deca',
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Align(
+                                      alignment: AlignmentDirectional(0.9, 0),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: Color(0xFF95A1AC),
+                                          size: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
