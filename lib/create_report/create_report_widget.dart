@@ -308,7 +308,7 @@ class _CreateReportWidgetState extends State<CreateReportWidget> {
               ),
             ),
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
               child: FFButtonWidget(
                 onPressed: () async {
                   final reportCreateData = createReportRecordData(
