@@ -24,14 +24,14 @@ abstract class ScheduleRecord
   DateTime get time;
 
   @nullable
-  String get uid;
-
-  @nullable
   @BuiltValueField(wireName: 'created_time')
   DateTime get createdTime;
 
   @nullable
   String get barangay;
+
+  @nullable
+  String get notifDate;
 
   @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
@@ -40,8 +40,8 @@ abstract class ScheduleRecord
   static void _initializeBuilder(ScheduleRecordBuilder builder) => builder
     ..details = ''
     ..wasteType = ''
-    ..uid = ''
-    ..barangay = '';
+    ..barangay = ''
+    ..notifDate = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('schedule');
@@ -65,9 +65,9 @@ Map<String, dynamic> createScheduleRecordData({
   String wasteType,
   DateTime date,
   DateTime time,
-  String uid,
   DateTime createdTime,
   String barangay,
+  String notifDate,
 }) =>
     serializers.toFirestore(
         ScheduleRecord.serializer,
@@ -76,6 +76,6 @@ Map<String, dynamic> createScheduleRecordData({
           ..wasteType = wasteType
           ..date = date
           ..time = time
-          ..uid = uid
           ..createdTime = createdTime
-          ..barangay = barangay));
+          ..barangay = barangay
+          ..notifDate = notifDate));

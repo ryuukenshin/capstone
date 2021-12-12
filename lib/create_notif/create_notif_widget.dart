@@ -1,13 +1,22 @@
+import '../auth/auth_util.dart';
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CreateNotifWidget extends StatefulWidget {
-  const CreateNotifWidget({Key key}) : super(key: key);
+  const CreateNotifWidget({
+    Key key,
+    this.waste,
+  }) : super(key: key);
+
+  final ScheduleRecord waste;
 
   @override
   _CreateNotifWidgetState createState() => _CreateNotifWidgetState();
@@ -16,7 +25,14 @@ class CreateNotifWidget extends StatefulWidget {
 class _CreateNotifWidgetState extends State<CreateNotifWidget> {
   DateTime datePicked;
   String dropDownValue;
+  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +111,7 @@ class _CreateNotifWidgetState extends State<CreateNotifWidget> {
                       children: [
                         Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                              EdgeInsetsDirectional.fromSTEB(16, 30, 16, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -112,7 +128,7 @@ class _CreateNotifWidgetState extends State<CreateNotifWidget> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -140,6 +156,8 @@ class _CreateNotifWidgetState extends State<CreateNotifWidget> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               FlutterFlowDropDown(
+                                initialOption: dropDownValue ??=
+                                    'Biodegradable',
                                 options: [
                                   'Biodegradable',
                                   'Non-biodegradable',
@@ -216,19 +234,152 @@ class _CreateNotifWidgetState extends State<CreateNotifWidget> {
                                         width: 3,
                                       ),
                                     ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          10, 14, 0, 0),
-                                      child: Text(
-                                        dateTimeFormat('M/d h:m a', datePicked),
-                                        style:
-                                            FlutterFlowTheme.bodyText1.override(
-                                          fontFamily: 'Lexend Deca',
-                                          color: FlutterFlowTheme.black,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  10, 14, 0, 0),
+                                          child: Text(
+                                            dateTimeFormat(
+                                                'M/d h:m a', datePicked),
+                                            style: FlutterFlowTheme.bodyText1
+                                                .override(
+                                              fontFamily: 'Lexend Deca',
+                                              color: FlutterFlowTheme.black,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                              child: Text(
+                                'Details',
+                                style: FlutterFlowTheme.bodyText1.override(
+                                  fontFamily: 'Lexend Deca',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(30, 10, 30, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 10, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.primaryColor,
+                                          width: 3,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.primaryColor,
+                                          width: 3,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
                                         ),
                                       ),
                                     ),
+                                    style: FlutterFlowTheme.bodyText1,
+                                    textAlign: TextAlign.center,
                                   ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(16, 50, 16, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  Navigator.pop(context);
+                                },
+                                text: 'Cancel',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 60,
+                                  color: FlutterFlowTheme.black,
+                                  textStyle:
+                                      FlutterFlowTheme.subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                  ),
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 12,
+                                ),
+                              ),
+                              FFButtonWidget(
+                                onPressed: () async {
+                                  final scheduleCreateData =
+                                      createScheduleRecordData(
+                                    wasteType: dropDownValue,
+                                    notifDate:
+                                        dateTimeFormat('M/d h:m a', datePicked),
+                                    details: textController.text,
+                                  );
+                                  await ScheduleRecord.collection
+                                      .doc()
+                                      .set(scheduleCreateData);
+                                  Navigator.pop(context);
+                                },
+                                text: 'Done',
+                                options: FFButtonOptions(
+                                  width: 130,
+                                  height: 60,
+                                  color: FlutterFlowTheme.primaryColor,
+                                  textStyle:
+                                      FlutterFlowTheme.subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                  ),
+                                  elevation: 3,
+                                  borderSide: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 1,
+                                  ),
+                                  borderRadius: 8,
                                 ),
                               )
                             ],

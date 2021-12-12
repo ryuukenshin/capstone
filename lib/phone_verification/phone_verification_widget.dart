@@ -137,7 +137,7 @@ class _PhoneVerificationWidgetState extends State<PhoneVerificationWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     if (phoneNumberController.text.isEmpty ||

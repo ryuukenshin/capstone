@@ -11,6 +11,7 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dashboard/dashboard_widget.dart';
 import 'create_alarm/create_alarm_widget.dart';
+import 'create_report/create_report_widget.dart';
 import 'my_profile/my_profile_widget.dart';
 
 void main() async {
@@ -100,6 +101,7 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'dashboard': DashboardWidget(),
       'createAlarm': CreateAlarmWidget(),
+      'createReport': CreateReportWidget(),
       'myProfile': MyProfileWidget(),
     };
     return Scaffold(
@@ -120,10 +122,18 @@ class _NavBarPageState extends State<NavBarPage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.notifications,
+              Icons.notifications_outlined,
               size: 24,
             ),
-            label: 'Home',
+            label: 'Notification',
+            tooltip: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.report_outlined,
+              size: 24,
+            ),
+            label: 'Report',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -135,7 +145,7 @@ class _NavBarPageState extends State<NavBarPage> {
               Icons.account_circle_rounded,
               size: 24,
             ),
-            label: '',
+            label: 'Profile',
             tooltip: '',
           )
         ],
@@ -144,7 +154,7 @@ class _NavBarPageState extends State<NavBarPage> {
         selectedItemColor: FlutterFlowTheme.primaryColor,
         unselectedItemColor: FlutterFlowTheme.black,
         onTap: (i) => setState(() => _currentPage = tabs.keys.toList()[i]),
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
       ),

@@ -120,7 +120,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     if (emailAddressController.text.isEmpty) {
